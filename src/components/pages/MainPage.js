@@ -27,8 +27,10 @@ class MainPage extends Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Shelf />
-                
+                <Shelf name="Currently Reading" books={this.state.books.filter(b => b.shelf === "currentlyReading")} />
+                <Shelf name="Want to Read" books={this.state.books.filter(b => b.shelf === "wantToRead")} />
+                <Shelf name="Read" books={this.state.books.filter(b => b.shelf === "read")} />
+
               </div>
             </div>
             <div className="open-search">
