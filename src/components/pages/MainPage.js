@@ -1,8 +1,23 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import * as BooksAPI from '../../BooksAPI'
 import Shelf from '../Shelf';
 
 class MainPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: []
+    }
+  }
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then(res => {
+        console.log(res);
+        this.setState({books: res})
+      })
+  }
+
     render() {
         return (
 
