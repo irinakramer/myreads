@@ -4,11 +4,25 @@ html, body, .root {
 
 body {
   line-height: 1.5;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 body, .app {
   background: white;
 }
+
+#root {
+  flex: 1
+}
+
+footer {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+
 
 /* main page */
 
