@@ -39,12 +39,12 @@ The backend API uses a fixed set of cached search results and is limited to a pa
 
 Main page:
 
-![Myreads - main page](/src/public/screenshot_myreads_main.png?raw=true "Myreads - main page")
+![Myreads - main page](/public/screenshot_myreads_main.png?raw=true "Myreads - main page")
 
 
 Search page:
 
-![Myreads - search page](/src/public/screenshot_myreads_search.png?raw=true "Myreads - search page")
+![Myreads - search page](/public/screenshot_myreads_search.png?raw=true "Myreads - search page")
 
 
 ## Author
