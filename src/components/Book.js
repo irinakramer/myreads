@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+* @description Functional component for Book
+* @param {object} props - props passed from the MainPage component
+* @param {function} updateBook - updateBook passed from the MainPage component
+* @returns {object} - JSX object that represents HTML for the book
+*/
 const Book = ({ book, updateBook }) => {
     return (
         <li>

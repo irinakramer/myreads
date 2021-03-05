@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from '../../BooksAPI'
 import Shelf from '../Shelf';
 
+/** Class representing Main Page of the App */
 class MainPage extends Component {
 
+  /** Set up props and state */
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +14,12 @@ class MainPage extends Component {
     }
   }
 
+  /**
+    * @description Update book using provided update method from BookAPI
+    * @param {object} book - book to be updated with a designated shelf
+    * @param {object} shelf - designated shelf
+    * @returns {object} updated books state
+    */
   updateBook = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then(resp => {
@@ -22,6 +30,10 @@ class MainPage extends Component {
       })
   }
 
+  /**
+    * @description set state using provided setAll() method from BookAPI
+    * @returns {object} books state
+    */
   componentDidMount() {
     BooksAPI.getAll()
       .then(res => {
@@ -29,6 +41,10 @@ class MainPage extends Component {
       })
   }
 
+  /**
+  * @description Render list of books on the main page
+  * @returns {object} JSX representing HTML for three book shelves
+  */
   render() {
     return (
       <div className="list-books">

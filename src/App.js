@@ -5,7 +5,12 @@ import { Route } from 'react-router-dom'
 import MainPage from './components/pages/MainPage'
 import SearchPage from './components/pages/SearchPage'
 
+/** Class representing top level Books App */
 class BooksApp extends React.Component {
+
+  /**
+  * @description Render routes for root "/" and "/search" page
+  */
   render() {
     return (
       <div>

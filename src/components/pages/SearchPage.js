@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from '../../BooksAPI'
 import Book from '../Book';
 
+/** Class representing Search Page of the App */
 class SearchPage extends Component {
 
+  /** Set up props and state */
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +16,10 @@ class SearchPage extends Component {
     }
   }
 
+  /**
+    * @description set state using provided setAll() method from BookAPI
+    * @returns {object} books state
+    */
   componentDidMount() {
     BooksAPI.getAll()
       .then(resp => {
@@ -21,10 +27,20 @@ class SearchPage extends Component {
       });
   }
 
+  /**
+    * @description Update query in the state
+    * @param {property} query - query entered by user
+    * @returns {object} updated state
+    */
   updateQuery = (query) => {
     this.setState({ query: query }, this.submitSearch);
   }
 
+  /**
+    * @description Submit search using provided search() method from BooksAPI
+    * @param {property} query - query entered by user
+    * @returns {object} updated state
+    */
   submitSearch() {
     if (this.state.query === "" || this.state.query === undefined) {
       return this.setState({ results: [] })
@@ -45,6 +61,12 @@ class SearchPage extends Component {
     });
   }
 
+  /**
+    * @description Update book using provided update method from BookAPI
+    * @param {object} book - book to be updated with a designated shelf
+    * @param {object} shelf - designated shelf
+    * @returns {object} updated books state
+    */
   updateBook = (book, shelf) => {
     BooksAPI.update(book, shelf)
       .then(resp => {
@@ -55,6 +77,10 @@ class SearchPage extends Component {
       })
   }
 
+  /**
+  * @description Render list of books on search page
+  * @returns {object} JSX representing HTML for all books based on search query
+  */
   render() {
     return (
       <div className="search-books">
