@@ -7,13 +7,10 @@ import Book from './Book';
 class SearchPage extends Component {
 
   /** Set up props and state */
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: [],
-      results: [],
-      query: ""
-    }
+  state = {
+    books: [],
+    results: [],
+    query: ""
   }
 
   /**
@@ -42,16 +39,17 @@ class SearchPage extends Component {
     * @returns {object} updated state
     */
   submitSearch() {
-    if (this.state.query === "" || this.state.query === undefined) {
+    const {books, query} = this.state;
+    if (query === "" || query === undefined) {
       return this.setState({ results: [] })
     }
 
-    BooksAPI.search(this.state.query.trim()).then(res => {
+    BooksAPI.search(query.trim()).then(res => {
       if (res.error) {
         return this.setState({ results: [] });
       } else {
         res.forEach(b => {
-          let f = this.state.books.filter(B => B.id === b.id);
+          let f = books.filter(B => B.id === b.id);
           if (f[0]) {
             b.shelf = f[0].shelf;
           }
@@ -87,13 +85,19 @@ class SearchPage extends Component {
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={(event) => this.updateQuery(event.target.value)} />
+            <input 
+              type="text" 
+              placeholder="Search by title or author" 
+              value={this.state.query} 
+              onChange={(event) => this.updateQuery(event.target.value)} 
+            />
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
             {
-              this.state.results.map((book, key) => <Book updateBook={this.updateBook} book={book} key={key} />)
+              this.state.results.map((book, key) => 
+              <Book updateBook={this.updateBook} book={book} key={key} />)
             }
           </ol>
         </div>
