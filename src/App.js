@@ -37,9 +37,7 @@ updateBook = (book, shelf) => {
     })
 }
 
-
-// TODO: move updateBook here
-
+// TODO: updateBook --> changeBookShelf
 // TODO: add books not found component
 
   /**
@@ -48,8 +46,16 @@ updateBook = (book, shelf) => {
   render() {
     return (
       <div>
-        <Route exact path="/" render={()=> <HomePage parentState={this.state} updateBook={this.updateBook} />}  />
-        <Route exact path="/search" component={SearchPage} />
+        <Route 
+          exact 
+          path="/" 
+          render={()=> <HomePage parentState={this.state} updateBook={this.updateBook} />}  
+        />
+        <Route 
+          exact 
+          path="/search" 
+          render={()=> <SearchPage parentState={this.state} updateBook={this.updateBook} />}  
+        />
       </div>
     )
   }

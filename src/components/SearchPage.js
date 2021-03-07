@@ -8,7 +8,7 @@ class SearchPage extends Component {
 
   /** Set up props and state */
   state = {
-    books: [],
+    books: this.props.parentState.books,
     results: [],
     query: ""
   }
@@ -17,12 +17,12 @@ class SearchPage extends Component {
     * @description set state using provided setAll() method from BookAPI
     * @returns {object} books state
     */
-  componentDidMount() {
-    BooksAPI.getAll()
-      .then(resp => {
-        this.setState({ books: resp })
-      });
-  }
+  // componentDidMount() {
+  //   BooksAPI.getAll()
+  //     .then(resp => {
+  //       this.setState({ books: resp })
+  //     });
+  // }
 
   /**
     * @description Update query in the state
@@ -65,15 +65,15 @@ class SearchPage extends Component {
     * @param {object} shelf - designated shelf
     * @returns {object} updated books state
     */
-  updateBook = (book, shelf) => {
-    BooksAPI.update(book, shelf)
-      .then(resp => {
-        book.shelf = shelf;
-        this.setState(state => ({
-          books: state.books.filter(b => b.id !== book.id).concat([book])
-        }));
-      })
-  }
+  // updateBook = (book, shelf) => {
+  //   BooksAPI.update(book, shelf)
+  //     .then(resp => {
+  //       book.shelf = shelf;
+  //       this.setState(state => ({
+  //         books: state.books.filter(b => b.id !== book.id).concat([book])
+  //       }));
+  //     })
+  // }
 
   /**
   * @description Render list of books on search page
@@ -97,7 +97,7 @@ class SearchPage extends Component {
           <ol className="books-grid">
             {
               this.state.results.map((book, key) => 
-              <Book updateBook={this.updateBook} book={book} key={key} />)
+              <Book updateBook={this.props.updateBook} book={book} key={key} />)
             }
           </ol>
         </div>
