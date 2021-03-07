@@ -6,12 +6,9 @@ import Shelf from './Shelf';
 /** Class representing Home Page of the App */
 class HomePage extends Component {
 
-  /** Set up props and state */
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: []
-    }
+  /** Set up initial state */
+  state = {
+    books: []
   }
 
   /**
@@ -41,11 +38,17 @@ class HomePage extends Component {
       })
   }
 
+  filterBooks = (str) => {
+    const {books} = this.state;
+    return books.filter(book => book.shelf === str)
+  }
+
   /**
   * @description Render list of books on the Home page
   * @returns {object} JSX representing HTML for three book shelves
   */
   render() {
+
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -56,22 +59,22 @@ class HomePage extends Component {
             <Shelf
               updateBook={this.updateBook}
               name="Currently Reading"
-              books={this.state.books.filter(b => b.shelf === "currentlyReading")}
+              books={this.filterBooks("currentlyReading")}
             />
             <Shelf
               updateBook={this.updateBook}
               name="Want to Read"
-              books={this.state.books.filter(b => b.shelf === "wantToRead")}
+              books={this.filterBooks("wantToRead")}
             />
             <Shelf
               updateBook={this.updateBook}
               name="Read"
-              books={this.state.books.filter(b => b.shelf === "read")}
+              books={this.filterBooks("read")}
             />
           </div>
         </div>
         <div className="open-search">
-          <Link to="/search">Add a book</Link>
+          <Link to="/search">Add book</Link>
         </div>
       </div>
     )
