@@ -7,9 +7,9 @@ import Shelf from './Shelf';
 class HomePage extends Component {
 
   /** Set up initial state */
-  state = {
-    books: []
-  }
+  // state = {
+  //   books: []
+  // }
 
   /**
     * @description Update book using provided update method from BookAPI
@@ -17,29 +17,29 @@ class HomePage extends Component {
     * @param {object} shelf - designated shelf
     * @returns {object} updated books state
     */
-  updateBook = (book, shelf) => {
-    BooksAPI.update(book, shelf)
-      .then(resp => {
-        book.shelf = shelf;
-        this.setState(state => ({
-          books: state.books.filter(b => b.id !== book.id).concat([book])
-        }))
-      })
-  }
+  // updateBook = (book, shelf) => {
+  //   BooksAPI.update(book, shelf)
+  //     .then(resp => {
+  //       book.shelf = shelf;
+  //       this.setState(state => ({
+  //         books: state.books.filter(b => b.id !== book.id).concat([book])
+  //       }))
+  //     })
+  // }
 
   /**
     * @description set state using provided setAll() method from BookAPI
     * @returns {object} books state
     */
-  componentDidMount() {
-    BooksAPI.getAll()
-      .then(res => {
-        this.setState({ books: res })
-      })
-  }
+  // componentDidMount() {
+  //   BooksAPI.getAll()
+  //     .then(res => {
+  //       this.setState({ books: res })
+  //     })
+  // }
 
   filterBooks = (str) => {
-    const {books} = this.state;
+    const {books} = this.props.parentState;
     return books.filter(book => book.shelf === str)
   }
 
@@ -57,17 +57,17 @@ class HomePage extends Component {
         <div className="list-books-content">
           <div>
             <Shelf
-              updateBook={this.updateBook}
+              updateBook={this.props.updateBook}
               name="Currently Reading"
               books={this.filterBooks("currentlyReading")}
             />
             <Shelf
-              updateBook={this.updateBook}
+              updateBook={this.props.updateBook}
               name="Want to Read"
               books={this.filterBooks("wantToRead")}
             />
             <Shelf
-              updateBook={this.updateBook}
+              updateBook={this.props.updateBook}
               name="Read"
               books={this.filterBooks("read")}
             />
