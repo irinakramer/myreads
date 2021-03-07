@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from '../../BooksAPI'
-import Shelf from '../Shelf';
+import * as BooksAPI from '../BooksAPI'
+import Shelf from './Shelf';
 
-/** Class representing Main Page of the App */
-class MainPage extends Component {
+/** Class representing Home Page of the App */
+class HomePage extends Component {
 
   /** Set up props and state */
   constructor(props) {
@@ -42,7 +42,7 @@ class MainPage extends Component {
   }
 
   /**
-  * @description Render list of books on the main page
+  * @description Render list of books on the Home page
   * @returns {object} JSX representing HTML for three book shelves
   */
   render() {
@@ -78,4 +78,4 @@ class MainPage extends Component {
   }
 }
 
-export default MainPage
+export default HomePage

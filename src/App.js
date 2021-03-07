@@ -2,8 +2,8 @@ import React from 'react'
 
 import './App.css'
 import { Route } from 'react-router-dom'
-import MainPage from './components/pages/MainPage'
-import SearchPage from './components/pages/SearchPage'
+import HomePage from './components/HomePage'
+import SearchPage from './components/SearchPage'
 
 /** Class representing top level Books App */
 class BooksApp extends React.Component {
@@ -14,7 +14,7 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div>
-        <Route exact path="/" component={MainPage} />
+        <Route exact path="/" component={HomePage} />
         <Route exact path="/search" component={SearchPage} />
       </div>
     )
