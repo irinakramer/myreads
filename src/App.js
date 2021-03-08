@@ -8,16 +8,15 @@ import SearchPage from './components/SearchPage'
 /** Class representing top level Books App */
 class BooksApp extends React.Component {
 
-// TODO: lift state up from Home and Search pages:
-// https://stackoverflow.com/questions/50616080/how-to-pass-state-in-react-router-to-components
-/* <Route path="/about" render={()=> <About parentState={this.state} />} /> */
-// And you can access them in About component like
-// this.props.parentState.main // should render "Drizzle"
-
+/** Set up initial state */
 state = {
   books: []
 }
 
+/**
+* @description set state using provided setAll() method from BookAPI
+* @returns {object} books state
+*/
 componentDidMount() {
   BooksAPI.getAll()
     .then(res => {
@@ -27,7 +26,13 @@ componentDidMount() {
     })
 }
 
-updateBook = (book, shelf) => {
+/**
+* @description Update book using provided update method from BookAPI
+* @param {object} book - book to be updated with a designated shelf
+* @param {object} shelf - designated shelf
+* @returns {object} updated books state
+*/
+changeBookShelf = (book, shelf) => {
   BooksAPI.update(book, shelf)
     .then(resp => {
       book.shelf = shelf;
@@ -37,8 +42,9 @@ updateBook = (book, shelf) => {
     })
 }
 
-// TODO: updateBook --> changeBookShelf
 // TODO: add books not found component
+
+// TODO: Add PropTypes
 
   /**
   * @description Render routes for root "/" and "/search" page
@@ -47,14 +53,20 @@ updateBook = (book, shelf) => {
     return (
       <div>
         <Route 
-          exact 
-          path="/" 
-          render={()=> <HomePage parentState={this.state} updateBook={this.updateBook} />}  
+          exact path="/" 
+          render={()=> 
+            <HomePage 
+              parentState={this.state} 
+              changeBookShelf={this.changeBookShelf} 
+            />}  
         />
         <Route 
-          exact 
-          path="/search" 
-          render={()=> <SearchPage parentState={this.state} updateBook={this.updateBook} />}  
+          exact path="/search" 
+          render={()=> 
+            <SearchPage 
+              parentState={this.state} 
+              changeBookShelf={this.changeBookShelf} 
+            />}  
         />
       </div>
     )

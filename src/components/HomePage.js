@@ -1,43 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from '../BooksAPI'
 import Shelf from './Shelf';
 
 /** Class representing Home Page of the App */
 class HomePage extends Component {
 
-  /** Set up initial state */
-  // state = {
-  //   books: []
-  // }
-
   /**
-    * @description Update book using provided update method from BookAPI
-    * @param {object} book - book to be updated with a designated shelf
-    * @param {object} shelf - designated shelf
-    * @returns {object} updated books state
+    * @description filter books to show only those matching the passed in shelf name
+    * @param {string} str - name of the shelf
+    * @returns {object} books matching the passed in shelf name
     */
-  // updateBook = (book, shelf) => {
-  //   BooksAPI.update(book, shelf)
-  //     .then(resp => {
-  //       book.shelf = shelf;
-  //       this.setState(state => ({
-  //         books: state.books.filter(b => b.id !== book.id).concat([book])
-  //       }))
-  //     })
-  // }
-
-  /**
-    * @description set state using provided setAll() method from BookAPI
-    * @returns {object} books state
-    */
-  // componentDidMount() {
-  //   BooksAPI.getAll()
-  //     .then(res => {
-  //       this.setState({ books: res })
-  //     })
-  // }
-
   filterBooks = (str) => {
     const {books} = this.props.parentState;
     return books.filter(book => book.shelf === str)
@@ -48,6 +20,8 @@ class HomePage extends Component {
   * @returns {object} JSX representing HTML for three book shelves
   */
   render() {
+    
+  const {changeBookShelf} = this.props;
 
     return (
       <div className="list-books">
@@ -57,17 +31,17 @@ class HomePage extends Component {
         <div className="list-books-content">
           <div>
             <Shelf
-              updateBook={this.props.updateBook}
+              changeBookShelf={this.props.changeBookShelf}
               name="Currently Reading"
               books={this.filterBooks("currentlyReading")}
             />
             <Shelf
-              updateBook={this.props.updateBook}
+              changeBookShelf={this.props.changeBookShelf}
               name="Want to Read"
               books={this.filterBooks("wantToRead")}
             />
             <Shelf
-              updateBook={this.props.updateBook}
+              changeBookShelf={this.props.changeBookShelf}
               name="Read"
               books={this.filterBooks("read")}
             />

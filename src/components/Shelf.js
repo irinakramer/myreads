@@ -16,7 +16,7 @@ const Shelf = (props) => {
             {
               props.books.map((book, key) =>
                 <Book
-                  updateBook={props.updateBook}
+                  changeBookShelf={props.changeBookShelf}
                   book={book}
                   key={key}
                 />
