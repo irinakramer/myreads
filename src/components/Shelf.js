@@ -8,6 +8,7 @@ import Book from './Book';
 * @returns {object} - JSX object that represents HTML for the book shelf
 */
 const Shelf = (props) => {
+  
   return (
     <div>
       <div className="bookshelf">
@@ -15,11 +16,11 @@ const Shelf = (props) => {
         <div className="bookshelf-books">
           <ol className="books-grid">
             {
-              props.books.map((book, key) =>
+              props.books.map((book) =>
                 <Book
                   changeBookShelf={props.changeBookShelf}
                   book={book}
-                  key={key}
+                  key={book.id}
                 />
               )
             }
