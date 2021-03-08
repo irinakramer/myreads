@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import * as BooksAPI from '../BooksAPI'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import * as BooksAPI from '../BooksAPI';
 import Book from './Book';
 
 /** Class representing Search Page of the App */
@@ -77,6 +78,11 @@ class SearchPage extends Component {
       </div>
     )
   }
+}
+
+SearchPage.propTypes = {
+  changeBookShelf: PropTypes.func.isRequired,
+  parentState: PropTypes.object.isRequired
 }
 
 export default SearchPage;

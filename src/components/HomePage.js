@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Shelf from './Shelf';
 
 /** Class representing Home Page of the App */
@@ -53,6 +54,11 @@ class HomePage extends Component {
       </div>
     )
   }
+}
+
+HomePage.propTypes = {
+  changeBookShelf: PropTypes.func.isRequired,
+  parentState: PropTypes.object.isRequired
 }
 
 export default HomePage
