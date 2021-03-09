@@ -42,9 +42,6 @@ changeBookShelf = (book, shelf) => {
     })
 }
 
-// TODO: add books not found component
-
-// TODO: Add PropTypes
 
   /**
   * @description Render routes for root "/" and "/search" page

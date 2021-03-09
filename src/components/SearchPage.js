@@ -38,10 +38,12 @@ class SearchPage extends Component {
       if (res.error) {
         return this.setState({ searchResults: [] });
       } else {
-        res.forEach(b => {
-          let f = books.filter(B => B.id === b.id);
-          if (f[0]) {
-            b.shelf = f[0].shelf;
+        res.forEach(book => {
+          let foundBook = books.filter(bookToFilter => bookToFilter.id === book.id);
+          if (foundBook[0]) {
+            console.log("foundBook: ", foundBook);
+            console.log("foundBook[0].shelf: ", foundBook[0].shelf);
+            book.shelf = foundBook[0].shelf;
           }
         });
         return this.setState({ searchResults: res });
@@ -54,6 +56,8 @@ class SearchPage extends Component {
   * @returns {object} JSX representing HTML for all books based on search query
   */
   render() {
+    console.log("this.state.searchResults: ", this.state.searchResults);
+    const {searchResults, query} = this.state;
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -69,9 +73,15 @@ class SearchPage extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {
+            { 
+            // Conditional to show books if found in search, 
+            // or 'not found' if not found in search
+            (this.state.searchResults.length !== 0) 
+              ?
               this.state.searchResults.map((book, key) => 
               <Book changeBookShelf={this.props.changeBookShelf} book={book} key={key} />)
+              :
+              <p>No books foundBook. Use search bar above to find some books.</p>
             }
           </ol>
         </div>
