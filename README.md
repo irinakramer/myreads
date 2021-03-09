@@ -49,4 +49,4 @@ Search page:
 
 ## Author
 
-Code is created by Irina Kramer, using starter code by Udacity [reactnd-project-myreads-starter](https://github.com/udacity/reactnd-project-myreads-starter) and tutorial https://youtu.be/acJHkd6K5kI.
+Code is created by Irina Kramer, using starter code by Udacity [reactnd-project-myreads-starter](https://github.com/udacity/reactnd-project-myreads-starter) and general concepts from tutorial https://youtu.be/acJHkd6K5kI.
